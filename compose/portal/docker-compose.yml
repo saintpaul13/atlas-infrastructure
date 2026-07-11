@@ -10,6 +10,14 @@ services:
     volumes:
       - ./app:/usr/share/nginx/html:ro
 
+  portal-api:
+    build: ./api
+    container_name: atlas-portal-api
+    restart: unless-stopped
+
+    networks:
+      - atlas-network
+
 networks:
   atlas-network:
     external: true
