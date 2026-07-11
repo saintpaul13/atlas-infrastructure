@@ -18,8 +18,8 @@ do
     echo "5) Disk Usage"
     echo "6) Memory Usage"
     echo "7) Health Report"
-    echo "8) Exit"
-    echo
+    echo "8) Backup Atlas"
+    echo "9) Exit"
 
     read -p "Select an option: " choice
 
@@ -53,10 +53,11 @@ do
             ;;
         8)
             clear
-            exit
+            /opt/atlas/scripts/backup.sh
             ;;
-        *)
-            echo "Invalid selection."
+        9)
+            clear
+	exit
             ;;
     esac
 
