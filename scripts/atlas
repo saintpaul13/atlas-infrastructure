@@ -1,0 +1,65 @@
+#!/bin/bash
+
+while true
+do
+    clear
+
+    echo "================================="
+    echo "      Atlas Control Center"
+    echo "================================="
+    echo
+    echo "Server: $(hostname)"
+    echo "Date: $(date)"
+    echo
+    echo "1) System Information"
+    echo "2) Docker Containers"
+    echo "3) Docker Images"
+    echo "4) Update Server"
+    echo "5) Disk Usage"
+    echo "6) Memory Usage"
+    echo "7) Health Report"
+    echo "8) Exit"
+    echo
+
+    read -p "Select an option: " choice
+
+    case $choice in
+        1)
+            clear
+            hostnamectl
+            ;;
+        2)
+            clear
+            docker ps -a
+            ;;
+        3)
+            clear
+            docker images
+            ;;
+        4)
+            /opt/atlas/scripts/update.sh
+            ;;
+        5)
+            clear
+            df -h
+            ;;
+        6)
+            clear
+            free -h
+            ;;
+        7)
+            clear
+            /opt/atlas/scripts/health.sh
+            ;;
+        8)
+            clear
+            exit
+            ;;
+        *)
+            echo "Invalid selection."
+            ;;
+    esac
+
+    echo
+    read -p "Press Enter to return to the menu..."
+done
