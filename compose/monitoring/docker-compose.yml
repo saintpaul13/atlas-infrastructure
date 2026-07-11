@@ -1,0 +1,53 @@
+services:
+  prometheus:
+    image: prom/prometheus:v3.5.0
+    container_name: atlas-prometheus
+    restart: unless-stopped
+
+    networks:
+      - atlas-network
+
+    ports:
+      - "9090:9090"
+
+    volumes:
+      - /opt/atlas/configs/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - /opt/atlas/data/prometheus:/prometheus
+
+  node-exporter:
+    image: prom/node-exporter:v1.9.1
+    container_name: atlas-node-exporter
+    restart: unless-stopped
+
+    networks:
+      - atlas-network
+
+    command:
+      - "--path.rootfs=/host"
+
+    pid: host
+
+    volumes:
+      - "/:/host:ro,rslave"
+
+  grafana:
+    image: grafana/grafana:12.0.2
+    container_name: atlas-grafana
+    restart: unless-stopped
+
+    networks:
+      - atlas-network
+
+    ports:
+      - "3000:3000"
+
+    environment:
+      GF_SECURITY_ADMIN_USER: ${GRAFANA_ADMIN_USER}
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD}
+
+    volumes:
+      - /opt/atlas/data/grafana:/var/lib/grafana
+
+networks:
+  atlas-network:
+    external: true

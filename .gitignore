@@ -1,7 +1,7 @@
 # Secrets
 configs/secrets/
 .env
-
+*.env
 # VPN keys
 **/wg0.conf
 **/privatekey
@@ -20,3 +20,6 @@ backups/
 
 # OS files
 .DS_Store
+
+# Runtime application data
+data/
