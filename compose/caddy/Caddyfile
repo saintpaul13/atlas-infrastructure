@@ -1,5 +1,15 @@
 admin.atlasconnect.ca {
 
-    reverse_proxy atlas-grafana:3000
+    handle_path /api/* {
+        reverse_proxy atlas-portal-api:8000
+    }
 
+    handle {
+        reverse_proxy atlas-portal:80
+    }
+
+}
+
+grafana.atlasconnect.ca {
+    reverse_proxy atlas-grafana:3000
 }
