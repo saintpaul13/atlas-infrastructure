@@ -13,3 +13,7 @@ admin.atlasconnect.ca {
 grafana.atlasconnect.ca {
     reverse_proxy atlas-grafana:3000
 }
+
+vpn.atlasconnect.ca {
+    reverse_proxy atlas-vpn:51821
+}

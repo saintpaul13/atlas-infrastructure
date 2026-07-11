@@ -2,6 +2,7 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 import json
 import shutil
 import subprocess
+import psutil
 
 class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
@@ -15,8 +16,10 @@ class Handler(BaseHTTPRequestHandler):
         uptime = "Running"
 
         data = {
+	    "memory_percent": psutil.virtual_memory().percent,
             "uptime": uptime,
-            "disk_used_percent": round((disk.used / disk.total) * 100, 1)
+            "disk_used_percent": round((disk.used / disk.total) * 100, 1),
+	    "cpu_percent": psutil.cpu_percent(interval=1),
         }
 
         self.send_response(200)

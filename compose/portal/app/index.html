@@ -30,9 +30,33 @@ a {
 
 <h2>🟢 System Healthy</h2>
 
-<p>Welcome, Paul.</p>
+<p id="uptime">Loading...</p>
+
+<p id="disk">Loading...</p>
+
+<p id="memory">Loading...</p>
+
+<p id="cpu">Loading...</p>
 
 <a href="https://grafana.atlasconnect.ca">📊 Monitoring</a>
+
+<script>
+fetch('/api/stats')
+  .then(r => r.json())
+  .then(data => {
+    document.getElementById('uptime').textContent =
+      'Uptime: ' + data.uptime;
+
+    document.getElementById('disk').textContent =
+      'Disk Usage: ' + data.disk_used_percent + '%';
+
+document.getElementById('memory').textContent =
+  'Memory Usage: ' + data.memory_percent + '%';
+
+document.getElementById('cpu').textContent =
+  'CPU Usage: ' + data.cpu_percent + '%';
+  });
+</script>
 
 </body>
 </html>
