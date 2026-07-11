@@ -1,0 +1,15 @@
+services:
+  portal:
+    image: nginx:alpine
+    container_name: atlas-portal
+    restart: unless-stopped
+
+    networks:
+      - atlas-network
+
+    volumes:
+      - ./app:/usr/share/nginx/html:ro
+
+networks:
+  atlas-network:
+    external: true
