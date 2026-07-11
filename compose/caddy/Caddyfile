@@ -1,0 +1,5 @@
+admin.atlasconnect.ca {
+
+    reverse_proxy atlas-grafana:3000
+
+}

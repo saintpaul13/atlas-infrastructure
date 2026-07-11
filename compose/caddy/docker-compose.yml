@@ -1,0 +1,25 @@
+services:
+  caddy:
+    image: caddy:2
+    container_name: atlas-caddy
+    restart: unless-stopped
+
+    ports:
+      - "80:80"
+      - "443:443"
+
+    networks:
+      - atlas-network
+
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+
+volumes:
+  caddy_data:
+  caddy_config:
+
+networks:
+  atlas-network:
+    external: true
