@@ -7,8 +7,6 @@ services:
     networks:
       - atlas-network
 
-    ports:
-      - "9090:9090"
 
     volumes:
       - /opt/atlas/configs/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
@@ -38,8 +36,6 @@ services:
     networks:
       - atlas-network
 
-    ports:
-      - "3000:3000"
 
     environment:
       GF_SECURITY_ADMIN_USER: ${GRAFANA_ADMIN_USER}
