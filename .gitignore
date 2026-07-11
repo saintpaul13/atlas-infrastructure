@@ -1,0 +1,22 @@
+# Secrets
+configs/secrets/
+.env
+
+# VPN keys
+**/wg0.conf
+**/privatekey
+**/publickey
+
+# Customer configs
+*.conf
+*.png
+*.zip
+
+# Logs
+logs/
+
+# Backups
+backups/
+
+# OS files
+.DS_Store
